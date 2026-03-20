@@ -9,7 +9,8 @@
   <script>
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;
-      n=f.fbq=function(){n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      n=f.fbq=function(){n.callMethod ?
+      n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;
       n.push=n;
       n.loaded=!0;
@@ -20,7 +21,7 @@
       t.src=v;
       s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s);
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
     fbq('init', '25936076819410061');
     fbq('track', 'PageView');
@@ -170,7 +171,7 @@
       padding:16px 18px;
       font-size:16px;
       font-weight:700;
-      transition:transform .15s ease, opacity .15s ease, background .2s ease;
+      transition:transform .15s ease, opacity .15s ease, background .2s ease, border-color .2s ease;
       text-decoration:none;
       display:block;
       text-align:center;
@@ -192,6 +193,25 @@
       color:#cbd5e1;
       background:rgba(255,255,255,.04);
       border:1px solid var(--line);
+    }
+
+    .secondary-contact{
+      margin-top:14px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .contact-inline{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .contact-inline .ghost-btn{
+      margin-top:0;
     }
 
     .question-title{
@@ -388,6 +408,7 @@
       .topbar{padding:16px 16px 0}
       .question-title{font-size:22px}
       .hero-title{font-size:30px}
+      .contact-inline{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -440,7 +461,32 @@
             <div class="chip">🤖 AI-анализ</div>
           </div>
 
-          <button class="main-btn" id="startBtn">Начать анализ бизнеса</button>
+          <button class="main-btn" id="startBtn" type="button">Начать анализ бизнеса</button>
+
+          <div class="secondary-contact">
+            Не хотите проходить квиз? Можно связаться сразу
+          </div>
+
+          <div class="contact-inline">
+            <a
+              class="ghost-btn"
+              id="telegramDirectBtn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Написать в Telegram
+            </a>
+            <a
+              class="ghost-btn"
+              id="whatsappDirectBtn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Написать в WhatsApp
+            </a>
+          </div>
         </section>
 
         <!-- Quiz -->
@@ -448,7 +494,7 @@
           <h2 class="question-title" id="questionTitle"></h2>
           <p class="question-sub" id="questionSub">Выберите один вариант</p>
           <div class="answers" id="answers"></div>
-          <button class="back-btn hidden" id="backBtn">← Назад</button>
+          <button class="back-btn hidden" id="backBtn" type="button">← Назад</button>
         </section>
 
         <!-- Analyzing -->
@@ -508,7 +554,7 @@
             В этом месяце доступно только <strong>10 бесплатных AI-аудитов</strong> с персональной рекомендацией по внедрению.
           </div>
 
-          <button class="main-btn" id="openLeadFormBtn">Получить персональный AI-план</button>
+          <button class="main-btn" id="openLeadFormBtn" type="button">Получить персональный AI-план</button>
         </section>
 
         <!-- Contact -->
@@ -633,12 +679,29 @@
     const openLeadFormBtn = document.getElementById("openLeadFormBtn");
     const telegramBtn = document.getElementById("telegramBtn");
     const whatsappBtn = document.getElementById("whatsappBtn");
+    const telegramDirectBtn = document.getElementById("telegramDirectBtn");
+    const whatsappDirectBtn = document.getElementById("whatsappDirectBtn");
     const messagePreview = document.getElementById("messagePreview");
 
     function trackEvent(name, params = {}) {
       if (typeof fbq === "function") {
         fbq("trackCustom", name, params);
       }
+    }
+
+    function buildDirectContactMessage() {
+      return [
+        "Здравствуйте!",
+        "",
+        "Хочу сразу обсудить внедрение AI для моего бизнеса без прохождения квиза.",
+        "Подскажите, какие решения вы можете предложить и с чего лучше начать?"
+      ].join("\n");
+    }
+
+    function setupDirectContactLinks() {
+      const directMessage = encodeURIComponent(buildDirectContactMessage());
+      telegramDirectBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${directMessage}`;
+      whatsappDirectBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${directMessage}`;
     }
 
     startBtn.addEventListener("click", () => {
@@ -683,6 +746,7 @@
     telegramBtn.addEventListener("click", () => {
       trackEvent("TelegramClicked", {
         destination: "telegram",
+        source: "result_form",
         username: TELEGRAM_USERNAME
       });
     });
@@ -690,6 +754,23 @@
     whatsappBtn.addEventListener("click", () => {
       trackEvent("WhatsAppClicked", {
         destination: "whatsapp",
+        source: "result_form",
+        phone: WHATSAPP_NUMBER
+      });
+    });
+
+    telegramDirectBtn.addEventListener("click", () => {
+      trackEvent("DirectContactClicked", {
+        destination: "telegram",
+        source: "welcome_screen",
+        username: TELEGRAM_USERNAME
+      });
+    });
+
+    whatsappDirectBtn.addEventListener("click", () => {
+      trackEvent("DirectContactClicked", {
+        destination: "whatsapp",
+        source: "welcome_screen",
         phone: WHATSAPP_NUMBER
       });
     });
@@ -922,6 +1003,8 @@
       telegramBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMessage}`;
       whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     }
+
+    setupDirectContactLinks();
   </script>
 </body>
 </html>
