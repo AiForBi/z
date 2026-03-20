@@ -63,7 +63,7 @@
 
     .shell{
       width:100%;
-      max-width:720px;
+      max-width:760px;
     }
 
     .card{
@@ -200,7 +200,7 @@
       text-align:center;
       color:var(--muted);
       font-size:14px;
-      line-height:1.5;
+      line-height:1.6;
     }
 
     .contact-inline{
@@ -211,6 +211,10 @@
     }
 
     .contact-inline .ghost-btn{
+      margin-top:0;
+    }
+
+    .contact-inline .main-btn{
       margin-top:0;
     }
 
@@ -225,6 +229,7 @@
       margin:0 0 22px;
       color:var(--muted);
       font-size:15px;
+      line-height:1.6;
     }
 
     .answers{
@@ -380,15 +385,13 @@
       border:1px solid rgba(22,163,74,.22);
       color:#dcfce7;
       font-size:14px;
+      line-height:1.6;
     }
 
-    .messenger-note{
-      padding:14px 16px;
-      border-radius:16px;
-      background:rgba(124,58,237,.08);
-      border:1px solid rgba(124,58,237,.24);
-      color:#e9ddff;
-      line-height:1.55;
+    .cta-note{
+      margin-top:14px;
+      color:#dbe4f0;
+      line-height:1.65;
       font-size:14px;
     }
 
@@ -446,25 +449,26 @@
           <h1 class="hero-title">Сколько денег и времени AI может сэкономить вашему бизнесу?</h1>
           <p class="hero-subtitle">
             Ответьте на 5 коротких вопросов и получите персональную оценку:
-            какие процессы автоматизировать, сколько часов можно сэкономить и какой ROI даёт внедрение AI.
+            какие процессы стоит автоматизировать в первую очередь, сколько часов AI может сэкономить вашей команде и какой сценарий даст самый быстрый результат.
           </p>
 
           <ul class="hero-points">
-            <li>✔ Какие процессы можно автоматизировать уже сейчас</li>
-            <li>✔ Сколько времени теряет команда на рутине</li>
-            <li>✔ Какой AI-сценарий даст самый быстрый результат</li>
+            <li>✔ Какие процессы автоматизировать в первую очередь</li>
+            <li>✔ Сколько времени команда теряет на рутинных задачах</li>
+            <li>✔ Какой AI-сценарий даст самый быстрый ROI</li>
+            <li>✔ С чего начать внедрение без сложной перестройки бизнеса</li>
           </ul>
 
           <div class="chips">
             <div class="chip">⏱ Меньше 1 минуты</div>
             <div class="chip">📈 Персональный расчёт</div>
-            <div class="chip">🤖 AI-анализ</div>
+            <div class="chip">🤖 Практический разбор</div>
           </div>
 
           <button class="main-btn" id="startBtn" type="button">Начать анализ бизнеса</button>
 
           <div class="secondary-contact">
-            Не хотите проходить квиз? Можно связаться сразу
+            Не хотите проходить квиз? Можно сразу написать и получить короткую консультацию по AI для вашего бизнеса
           </div>
 
           <div class="contact-inline">
@@ -501,14 +505,14 @@
         <section id="screenAnalyzing" class="hidden">
           <div class="analyzing">
             <div class="spinner"></div>
-            <h2 class="question-title" style="text-align:center;">AI анализирует ваш бизнес…</h2>
+            <h2 class="question-title" style="text-align:center;">Формируем ваш персональный результат…</h2>
             <p class="question-sub" style="text-align:center;">
-              Это нужно, чтобы рассчитать потенциал автоматизации, экономию времени и подходящий AI-сценарий.
+              На основе ваших ответов мы рассчитываем потенциал автоматизации, экономию времени и рекомендуемый AI-сценарий для первого внедрения.
             </p>
             <div class="analysis-list">
-              <div class="analysis-item">✔ Анализ бизнес-нагрузки и повторяющихся задач</div>
-              <div class="analysis-item">✔ Оценка объёма обращений и лидов</div>
-              <div class="analysis-item">✔ Расчёт ежемесячной экономии</div>
+              <div class="analysis-item">✔ Оцениваем повторяющиеся процессы и рутинную нагрузку</div>
+              <div class="analysis-item">✔ Определяем самый перспективный сценарий автоматизации</div>
+              <div class="analysis-item">✔ Рассчитываем потенциальную экономию времени и ресурсов</div>
             </div>
           </div>
         </section>
@@ -550,35 +554,35 @@
             <p id="roiText"></p>
           </div>
 
-          <div class="notice">
-            В этом месяце доступно только <strong>10 бесплатных AI-аудитов</strong> с персональной рекомендацией по внедрению.
-          </div>
-
-          <button class="main-btn" id="openLeadFormBtn" type="button">Получить персональный AI-план</button>
-        </section>
-
-        <!-- Contact -->
-        <section id="screenForm" class="hidden">
-          <h2 class="question-title">Куда отправить ваш персональный AI-план?</h2>
-          <p class="question-sub">
-            Мы делаем акцент на мессенджеры — так намного быстрее и удобнее, чем через email или телефон.
-          </p>
-
-          <div class="messenger-note">
-            Основной канал связи — <strong>Telegram или WhatsApp</strong>.
-            Вы получите короткий персональный разбор, какие процессы автоматизировать первыми и какой сценарий даст самый быстрый ROI.
-          </div>
-
           <div class="panel">
-            <h3>Предпросмотр сообщения</h3>
-            <p id="messagePreview"></p>
+            <h3>Что вы получите после обращения</h3>
+            <ul class="list">
+              <li>Какие 2–3 процесса стоит автоматизировать первыми</li>
+              <li>Какой AI-сценарий даст самый быстрый ROI</li>
+              <li>Что можно внедрить без сложной интеграции</li>
+              <li>Короткий персональный план следующих шагов</li>
+            </ul>
           </div>
 
-          <a class="main-btn" id="telegramBtn" href="#" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
-          <a class="ghost-btn" id="whatsappBtn" href="#" target="_blank" rel="noopener noreferrer">Написать в WhatsApp</a>
+          <div class="notice">
+            Персональный разбор делается вручную под ответы из квиза, поэтому количество бесплатных разборов ограничено.
+          </div>
+
+          <div class="cta-note">
+            Мы подготовили предварительную оценку на основе ваших ответов. Следующий шаг — получить короткий персональный разбор, где мы покажем, какие процессы стоит автоматизировать первыми, какой AI-сценарий даст самый быстрый эффект и что можно внедрить в ближайшее время без сложной перестройки процессов.
+          </div>
+
+          <div class="contact-inline" style="margin-top:16px;">
+            <a class="main-btn" id="telegramResultBtn" href="#" target="_blank" rel="noopener noreferrer">
+              Получить разбор в Telegram
+            </a>
+            <a class="ghost-btn" id="whatsappResultBtn" href="#" target="_blank" rel="noopener noreferrer">
+              Получить разбор в WhatsApp
+            </a>
+          </div>
 
           <div class="footer-note">
-            После нажатия откроется мессенджер с уже готовым сообщением и результатом квиза.
+            После нажатия откроется мессенджер с готовым сообщением и вашим результатом. В ответ вы получите короткий персональный разбор по внедрению AI под ваш бизнес.
           </div>
         </section>
       </div>
@@ -666,7 +670,6 @@
     const screenQuiz = document.getElementById("screenQuiz");
     const screenAnalyzing = document.getElementById("screenAnalyzing");
     const screenResult = document.getElementById("screenResult");
-    const screenForm = document.getElementById("screenForm");
 
     const questionTitle = document.getElementById("questionTitle");
     const questionSub = document.getElementById("questionSub");
@@ -676,12 +679,10 @@
     const stepLabel = document.getElementById("stepLabel");
 
     const startBtn = document.getElementById("startBtn");
-    const openLeadFormBtn = document.getElementById("openLeadFormBtn");
-    const telegramBtn = document.getElementById("telegramBtn");
-    const whatsappBtn = document.getElementById("whatsappBtn");
     const telegramDirectBtn = document.getElementById("telegramDirectBtn");
     const whatsappDirectBtn = document.getElementById("whatsappDirectBtn");
-    const messagePreview = document.getElementById("messagePreview");
+    const telegramResultBtn = document.getElementById("telegramResultBtn");
+    const whatsappResultBtn = document.getElementById("whatsappResultBtn");
 
     function trackEvent(name, params = {}) {
       if (typeof fbq === "function") {
@@ -693,8 +694,12 @@
       return [
         "Здравствуйте!",
         "",
-        "Хочу сразу обсудить внедрение AI для моего бизнеса без прохождения квиза.",
-        "Подскажите, какие решения вы можете предложить и с чего лучше начать?"
+        "Хочу обсудить, какие AI-решения можно внедрить в моём бизнесе без прохождения квиза.",
+        "",
+        "Интересует:",
+        "• какие процессы можно автоматизировать в первую очередь;",
+        "• где AI даст самый быстрый эффект;",
+        "• с чего лучше начать внедрение."
       ].join("\n");
     }
 
@@ -730,35 +735,6 @@
       });
     });
 
-    openLeadFormBtn.addEventListener("click", () => {
-      buildMessengerLinks();
-      hideAllScreens();
-      screenForm.classList.remove("hidden");
-      updateProgress(100, "Готово");
-
-      trackEvent("LeadFormOpened", {
-        automation: state.result.automation,
-        hours: state.result.hours,
-        money: state.result.money
-      });
-    });
-
-    telegramBtn.addEventListener("click", () => {
-      trackEvent("TelegramClicked", {
-        destination: "telegram",
-        source: "result_form",
-        username: TELEGRAM_USERNAME
-      });
-    });
-
-    whatsappBtn.addEventListener("click", () => {
-      trackEvent("WhatsAppClicked", {
-        destination: "whatsapp",
-        source: "result_form",
-        phone: WHATSAPP_NUMBER
-      });
-    });
-
     telegramDirectBtn.addEventListener("click", () => {
       trackEvent("DirectContactClicked", {
         destination: "telegram",
@@ -775,12 +751,33 @@
       });
     });
 
+    telegramResultBtn.addEventListener("click", () => {
+      trackEvent("MessengerClicked", {
+        destination: "telegram",
+        source: "result_screen",
+        username: TELEGRAM_USERNAME,
+        automation: state.result.automation,
+        hours: state.result.hours,
+        money: state.result.money
+      });
+    });
+
+    whatsappResultBtn.addEventListener("click", () => {
+      trackEvent("MessengerClicked", {
+        destination: "whatsapp",
+        source: "result_screen",
+        phone: WHATSAPP_NUMBER,
+        automation: state.result.automation,
+        hours: state.result.hours,
+        money: state.result.money
+      });
+    });
+
     function hideAllScreens(){
       screenWelcome.classList.add("hidden");
       screenQuiz.classList.add("hidden");
       screenAnalyzing.classList.add("hidden");
       screenResult.classList.add("hidden");
-      screenForm.classList.add("hidden");
     }
 
     function showQuiz(){
@@ -859,7 +856,8 @@
         buildResult();
         hideAllScreens();
         screenResult.classList.remove("hidden");
-      }, 2200);
+        updateProgress(100, "Результат");
+      }, 1800);
     }
 
     function updateProgress(percent, label){
@@ -945,19 +943,21 @@
       if (pain.includes("Отчёты")) solution = "🤖 AI Analytics Assistant";
       if (pain.includes("Маркетинг")) solution = "🤖 AI Marketing Assistant";
 
-      let solutionText = `${solution} — лучший сценарий для бизнеса в нише «${niche}». `;
-      solutionText += `Он может автоматизировать задачу «${pain}», сократить ручную нагрузку при объёме «${volume}» и уменьшить рутину на уровне «${time}». `;
-      solutionText += `Первый эффект обычно достигается за счёт быстрой автоматизации обращений, заявок, квалификации лидов и отчётности.`;
+      let solutionText = `${solution} — наиболее логичный первый сценарий для бизнеса в нише «${niche}». `;
+      solutionText += `Он помогает сократить ручную нагрузку в зоне «${pain}», удерживать скорость работы при объёме «${volume}» и уменьшить рутину на уровне «${time}». `;
+      solutionText += `Быстрее всего результат обычно достигается через автоматизацию обращений, заявок, квалификации лидов и регулярных повторяющихся задач.`;
 
       document.getElementById("solutionText").textContent = solutionText;
 
-      let roiText = `С вашим объёмом процессов основной потенциал находится в сокращении ручной рутины, ускорении ответа клиентам и снижении потерь лидов. `;
-      roiText += `При таком профиле бизнеса AI чаще всего окупается через экономию времени команды, рост скорости обработки заявок и более стабильную конверсию из входящих обращений.`;
+      let roiText = `Основной потенциал у вас находится в сокращении ручной рутины, ускорении реакции на обращения и снижении потерь на этапе обработки лидов и заявок. `;
+      roiText += `При таком профиле бизнеса AI чаще всего окупается за счёт экономии времени команды, более стабильной скорости обработки входящего потока и роста эффективности без расширения штата.`;
 
       document.getElementById("roiText").textContent = roiText;
 
       document.getElementById("resultSubtitle").textContent =
         `Мы рассчитали результат на основе ответов о стадии бизнеса, нише, главной операционной боли, объёме рутины и потоке обращений.`;
+
+      buildMessengerLinks();
 
       trackEvent("QuizResultShown", {
         automation_percent: state.result.automation,
@@ -976,7 +976,7 @@
       const volume = state.answers.volume?.value || "—";
 
       return [
-        "Здравствуйте! Я прошёл AI-аудит бизнеса.",
+        "Здравствуйте! Я прошёл AI-аудит бизнеса и хочу получить персональный разбор.",
         "",
         "Мой результат:",
         `• Потенциал автоматизации: ${state.result.automation}%`,
@@ -986,11 +986,14 @@
         "Мои ответы:",
         `• Этап бизнеса: ${stage}`,
         `• Сфера: ${niche}`,
-        `• Главная боль: ${pain}`,
+        `• Главная операционная боль: ${pain}`,
         `• Время на рутину: ${time}`,
         `• Объём обращений: ${volume}`,
         "",
-        "Хочу получить персональный AI-план."
+        "Хочу понять:",
+        "• какие процессы автоматизировать в первую очередь;",
+        "• какой AI-сценарий даст самый быстрый ROI;",
+        "• что можно внедрить в ближайшее время без сложной перестройки процессов."
       ].join("\n");
     }
 
@@ -998,10 +1001,8 @@
       const message = buildLeadMessage();
       const encodedMessage = encodeURIComponent(message);
 
-      messagePreview.textContent = message;
-
-      telegramBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMessage}`;
-      whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+      telegramResultBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMessage}`;
+      whatsappResultBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     }
 
     setupDirectContactLinks();
