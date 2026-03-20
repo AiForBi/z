@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Quiz — Сколько AI сэкономит вашему бизнесу?</title>
+  <title>AiForBiz — Сколько AI сэкономит вашему бизнесу?</title>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -94,15 +94,15 @@
       letter-spacing:.2px;
     }
 
-    .brand-badge{
+    .brand-logo{
       width:34px;
       height:34px;
       border-radius:12px;
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
-      display:grid;
-      place-items:center;
-      box-shadow:0 8px 20px rgba(124,58,237,.35);
-      font-size:15px;
+      object-fit:cover;
+      display:block;
+      box-shadow:0 8px 20px rgba(124,58,237,.25);
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
     }
 
     .step-label{
@@ -409,8 +409,8 @@
       <div class="topbar">
         <div class="topline">
           <div class="brand">
-            <div class="brand-badge">AI</div>
-            <div>AI Business Audit</div>
+            <img src="Aibiz.png" alt="AiForBiz" class="brand-logo" />
+            <div>AiForBiz</div>
           </div>
           <div class="step-label" id="stepLabel">1 / 5</div>
         </div>
@@ -485,7 +485,7 @@
             </div>
             <div class="metric">
               <div class="metric-label">Потенциальная экономия</div>
-              <div class="metric-value" id="moneyValue">€0</div>
+              <div class="metric-value" id="moneyValue">$0</div>
             </div>
           </div>
 
@@ -651,7 +651,7 @@
       renderQuestion();
 
       trackEvent("QuizStarted", {
-        quiz_name: "AI Business Audit"
+        quiz_name: "AiForBiz Business Audit"
       });
     });
 
@@ -790,8 +790,8 @@
       return Math.max(min, Math.min(num, max));
     }
 
-    function formatEuro(amount){
-      return "€" + amount.toLocaleString("ru-RU");
+    function formatCurrency(amount){
+      return "$" + amount.toLocaleString("ru-RU");
     }
 
     function buildResult(){
@@ -808,7 +808,7 @@
 
       document.getElementById("automationValue").textContent = `${state.result.automation}%`;
       document.getElementById("hoursValue").textContent = `${state.result.hours} ч`;
-      document.getElementById("moneyValue").textContent = formatEuro(state.result.money);
+      document.getElementById("moneyValue").textContent = formatCurrency(state.result.money);
 
       const pain = state.answers.pain?.value || "";
       const volume = state.answers.volume?.value || "";
@@ -881,7 +881,7 @@
       trackEvent("QuizResultShown", {
         automation_percent: state.result.automation,
         saved_hours: state.result.hours,
-        potential_saving_eur: state.result.money,
+        potential_saving_usd: state.result.money,
         niche: state.answers.niche?.value || "",
         pain: state.answers.pain?.value || ""
       });
@@ -900,7 +900,7 @@
         "Мой результат:",
         `• Потенциал автоматизации: ${state.result.automation}%`,
         `• Экономия времени: ${state.result.hours} ч/мес`,
-        `• Потенциальная экономия: ${formatEuro(state.result.money)}`,
+        `• Потенциальная экономия: ${formatCurrency(state.result.money)}`,
         "",
         "Мои ответы:",
         `• Этап бизнеса: ${stage}`,
