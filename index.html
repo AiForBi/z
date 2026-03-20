@@ -4,6 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Quiz — Сколько AI сэкономит вашему бизнесу?</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '25936076819410061');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
   <style>
     :root{
       --bg:#0b1020;
@@ -22,6 +45,7 @@
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+
     body{
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background:
@@ -153,6 +177,7 @@
     }
 
     .main-btn:hover, .ghost-btn:hover{transform:translateY(-1px)}
+
     .main-btn{
       width:100%;
       margin-top:22px;
@@ -337,53 +362,6 @@
       font-size:14px;
     }
 
-    form{
-      display:grid;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    label{
-      display:block;
-      font-size:14px;
-      color:#dbe4f0;
-      margin-bottom:6px;
-    }
-
-    input, select, textarea{
-      width:100%;
-      padding:14px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:white;
-      outline:none;
-      font:inherit;
-      transition:border-color .2s ease, box-shadow .2s ease;
-    }
-
-    input:focus, select:focus, textarea:focus{
-      border-color:rgba(124,58,237,.6);
-      box-shadow:0 0 0 3px rgba(124,58,237,.14);
-    }
-
-    textarea{
-      min-height:98px;
-      resize:vertical;
-    }
-
-    .inline-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    .field-hint{
-      color:var(--muted);
-      font-size:12px;
-      margin-top:4px;
-    }
-
     .messenger-note{
       padding:14px 16px;
       border-radius:16px;
@@ -392,29 +370,6 @@
       color:#e9ddff;
       line-height:1.55;
       font-size:14px;
-    }
-
-    .status{
-      margin-top:12px;
-      padding:14px 16px;
-      border-radius:14px;
-      display:none;
-      font-size:14px;
-      line-height:1.55;
-    }
-
-    .status.success{
-      display:block;
-      background:rgba(22,163,74,.08);
-      border:1px solid rgba(22,163,74,.22);
-      color:#dcfce7;
-    }
-
-    .status.error{
-      display:block;
-      background:rgba(239,68,68,.08);
-      border:1px solid rgba(239,68,68,.22);
-      color:#fee2e2;
     }
 
     .footer-note{
@@ -429,7 +384,6 @@
 
     @media (max-width:700px){
       .result-grid{grid-template-columns:1fr}
-      .inline-grid{grid-template-columns:1fr}
       .content{padding:22px 16px 18px}
       .topbar{padding:16px 16px 0}
       .question-title{font-size:22px}
@@ -438,6 +392,18 @@
   </style>
 </head>
 <body>
+  <!-- Meta Pixel Noscript -->
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=25936076819410061&ev=PageView&noscript=1"
+      alt=""
+    />
+  </noscript>
+  <!-- End Meta Pixel Noscript -->
+
   <div class="shell">
     <div class="card">
       <div class="topbar">
@@ -553,7 +519,7 @@
           </p>
 
           <div class="messenger-note">
-            Основной канал связи — <strong>Telegram или WhatsApp</strong>.  
+            Основной канал связи — <strong>Telegram или WhatsApp</strong>.
             Вы получите короткий персональный разбор, какие процессы автоматизировать первыми и какой сценарий даст самый быстрый ROI.
           </div>
 
@@ -574,8 +540,8 @@
   </div>
 
   <script>
-    const TELEGRAM_USERNAME = "yourtelegramusername";
-    const WHATSAPP_NUMBER = "37100000000";
+    const TELEGRAM_USERNAME = "aiforbiz_manager";
+    const WHATSAPP_NUMBER = "18255727624";
 
     const questions = [
       {
@@ -669,22 +635,36 @@
     const whatsappBtn = document.getElementById("whatsappBtn");
     const messagePreview = document.getElementById("messagePreview");
 
+    function trackEvent(name, params = {}) {
+      if (typeof fbq === "function") {
+        fbq("trackCustom", name, params);
+      }
+    }
+
     startBtn.addEventListener("click", () => {
       state.current = 0;
       state.score = 0;
       state.answers = {};
       state.result = { automation: 0, hours: 0, money: 0 };
+
       showQuiz();
       renderQuestion();
+
+      trackEvent("QuizStarted", {
+        quiz_name: "AI Business Audit"
+      });
     });
 
     backBtn.addEventListener("click", () => {
       if (state.current <= 0) return;
 
-      delete state.answers[questions[state.current].id];
       state.current -= 1;
-      recalculateScore();
       renderQuestion();
+
+      trackEvent("QuizBackClicked", {
+        question_id: questions[state.current].id,
+        question_index: state.current + 1
+      });
     });
 
     openLeadFormBtn.addEventListener("click", () => {
@@ -692,6 +672,26 @@
       hideAllScreens();
       screenForm.classList.remove("hidden");
       updateProgress(100, "Готово");
+
+      trackEvent("LeadFormOpened", {
+        automation: state.result.automation,
+        hours: state.result.hours,
+        money: state.result.money
+      });
+    });
+
+    telegramBtn.addEventListener("click", () => {
+      trackEvent("TelegramClicked", {
+        destination: "telegram",
+        username: TELEGRAM_USERNAME
+      });
+    });
+
+    whatsappBtn.addEventListener("click", () => {
+      trackEvent("WhatsAppClicked", {
+        destination: "whatsapp",
+        phone: WHATSAPP_NUMBER
+      });
     });
 
     function hideAllScreens(){
@@ -709,6 +709,8 @@
 
     function renderQuestion(){
       const q = questions[state.current];
+      const selectedValue = state.answers[q.id]?.value || null;
+
       questionTitle.textContent = q.q;
       questionSub.textContent = q.sub;
       answersEl.innerHTML = "";
@@ -718,13 +720,18 @@
         btn.className = "answer-btn";
         btn.type = "button";
         btn.textContent = option.text;
+
+        if (selectedValue === option.value) {
+          btn.classList.add("selected");
+        }
+
         btn.addEventListener("click", () => selectAnswer(option));
         answersEl.appendChild(btn);
       });
 
       backBtn.classList.toggle("hidden", state.current === 0);
 
-      const progressPercent = ((state.current) / questions.length) * 100;
+      const progressPercent = ((state.current + 1) / questions.length) * 100;
       updateProgress(progressPercent, `${state.current + 1} / ${questions.length}`);
     }
 
@@ -742,6 +749,14 @@
 
       recalculateScore();
 
+      trackEvent("QuizAnswerSelected", {
+        question_id: q.id,
+        question_text: q.q,
+        answer: option.value,
+        score: option.score,
+        question_index: state.current + 1
+      });
+
       if (state.current < questions.length - 1) {
         state.current += 1;
         renderQuestion();
@@ -754,6 +769,11 @@
       hideAllScreens();
       screenAnalyzing.classList.remove("hidden");
       updateProgress(100, "AI анализ");
+
+      trackEvent("QuizCompleted", {
+        total_score: state.score
+      });
+
       setTimeout(() => {
         buildResult();
         hideAllScreens();
@@ -831,6 +851,7 @@
       const uniqueAutomations = [...new Set(automations)].slice(0, 5);
       const automationList = document.getElementById("automationList");
       automationList.innerHTML = "";
+
       uniqueAutomations.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
@@ -856,6 +877,14 @@
 
       document.getElementById("resultSubtitle").textContent =
         `Мы рассчитали результат на основе ответов о стадии бизнеса, нише, главной операционной боли, объёме рутины и потоке обращений.`;
+
+      trackEvent("QuizResultShown", {
+        automation_percent: state.result.automation,
+        saved_hours: state.result.hours,
+        potential_saving_eur: state.result.money,
+        niche: state.answers.niche?.value || "",
+        pain: state.answers.pain?.value || ""
+      });
     }
 
     function buildLeadMessage(){
